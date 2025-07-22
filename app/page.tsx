@@ -1,22 +1,33 @@
 'use client'
-import React,{useState} from "react";
-import Header from "./components/Header";
+
+import React, { useState } from 'react'
+import Header from './components/Header'
+import Hero from './components/Hero'
 
 export default function Home() {
-  const [activeSession, setActiveSession] = useState("home");
-
+  const [activeSection, setActiveSection] = useState('home')
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-      <main className="container mx-auto px-6 py-8">
-         <h1 className="text-4xl font-bold text-white text-center">
-          Portfolio Coming Soon...
-        </h1>
-        <p className="text-gray-300 text-center mt-4">
-          Building step by step!
-        </p>
-      </main>
+      <Header activeSection={activeSection} setActiveSection={setActiveSection} />
+      
+      {activeSection === 'home' ? (
+        <main className="container mx-auto px-6">
+          <Hero setActiveSection={setActiveSection} />
+          
+          {/* Placeholder for more sections */}
+          <div className="text-center py-8">
+            <p className="text-gray-400">More sections coming next...</p>
+          </div>
+        </main>
+      ) : (
+        <main className="container mx-auto px-6 py-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-white">AI Assistant</h2>
+            <p className="text-gray-400 mt-4">Chat interface coming soon...</p>
+          </div>
+        </main>
+      )}
     </div>
-  );
+  )
 }
-
